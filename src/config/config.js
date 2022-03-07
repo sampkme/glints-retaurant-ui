@@ -1,25 +1,17 @@
-const convict = require('convict');
+const config = {
+  "development": {
+    "api_url": "http://localhost:4000/api/",
+  },
+  "production": {
+    "api_url": "http://localhost:4000/api/",
+  },
+  "test": {
+    "api_url": "http://localhost:4000/api/",
+  }
+};
 
-// Define a schema
-var config = convict({
-  env: {
-    doc: 'The application environment.',
-    format: ['production', 'development', 'test'],
-    default: 'development',
-    env: 'REACT_APP_ENVIRONMENT'
-  },
-  api_url: {
-    doc: 'API URL',
-    format: String,
-    default: 'http://localhost:4000/api/'
-  },
-});
 
 // Load environment dependent configuration
-var env = config.get('env');
-config.loadFile(`./src/config/${env}.json`);
+const mainConfig = config[process.env.REACT_APP_ENVIRONMENT];
 
-// Perform validation
-config.validate({ allowed: 'strict' });
-
-module.exports = config;
+module.exports = mainConfig;
