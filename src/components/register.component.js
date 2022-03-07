@@ -7,7 +7,7 @@ import AuthService from "../services/auth.service";
 const required = value => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger mt-1 p-1" role="alert">
         This field is required!
       </div>
     );
@@ -16,7 +16,7 @@ const required = value => {
 const email = value => {
   if (!isEmail(value)) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger mt-1 p-1" role="alert">
         This is not a valid email.
       </div>
     );
@@ -25,7 +25,7 @@ const email = value => {
 const vname = value => {
   if (value.length < 3 || value.length > 20) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger mt-1 p-1" role="alert">
         The name must be between 3 and 20 characters.
       </div>
     );
@@ -34,7 +34,7 @@ const vname = value => {
 const vpassword = value => {
   if (value.length < 6 || value.length > 40) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger mt-1 p-1" role="alert">
         The password must be between 6 and 40 characters.
       </div>
     );
@@ -108,11 +108,7 @@ export default class Register extends Component {
     return (
       <div className="col-md-12">
         <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
+          <h3 className="text-center">Signup</h3>
           <Form
             onSubmit={this.handleRegister}
             ref={c => {

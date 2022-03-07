@@ -8,7 +8,7 @@ import { isEmail } from "validator";
 const required = value => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger mt-1 p-1" role="alert">
         This field is required!
       </div>
     );
@@ -17,7 +17,7 @@ const required = value => {
 const email = value => {
   if (!isEmail(value)) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger mt-1 p-1" role="alert">
         This is not a valid email.
       </div>
     );
@@ -82,11 +82,7 @@ export default class Login extends Component {
     return (
       <div className="col-md-12">
         <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
+        <h3 className="text-center">Login</h3>
           <Form
             onSubmit={this.handleLogin}
             ref={c => {
