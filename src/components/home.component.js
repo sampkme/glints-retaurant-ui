@@ -122,18 +122,18 @@ export default class Home extends Component {
         </div>
         <div className="row">
           {Object.entries(this.state.restaurants).map(([key, value]) => (
-            <Card style={{ width: '18rem' }} key={value.id}>
+            <Card style={{ width: '22rem' }} key={value.id}>
               <Card.Body>
                 <Card.Title>{value.name}</Card.Title>
                 <Card.Text>
                   {Object.entries(value.restaurant_days).map(([key, dayValue]) => (
                     <div>
-                      {dayValue.day} - {moment(dayValue.time_from, [moment.ISO_8601, 'HH:mm']).format('h:mm a')} to {moment(dayValue.time_to, [moment.ISO_8601, 'HH:mm']).format('h:mm a')}
+                      <b>{dayValue.day}</b> - {moment(dayValue.time_from, [moment.ISO_8601, 'HH:mm']).format('h:mm a')} to {moment(dayValue.time_to, [moment.ISO_8601, 'HH:mm']).format('h:mm a')}
                     </div>
                   ))}
 
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">Save</Button>
               </Card.Body>
             </Card>
           ))}
