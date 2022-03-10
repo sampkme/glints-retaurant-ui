@@ -15,6 +15,7 @@ class App extends Component {
       currentUser: undefined,
     };
   }
+  
   componentDidMount() {
     const user = AuthService.getCurrentUser();
     if (user) {

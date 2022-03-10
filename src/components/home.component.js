@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import RestaurantService from "../services/restaurant.service";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import "react-datetime/css/react-datetime.css";
 import Datetime from 'react-datetime';
 import moment from 'moment';
+import SimpleModal from "./simple-modal.component";
 
 export default class Home extends Component {
   weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -133,7 +133,7 @@ export default class Home extends Component {
                   ))}
 
                 </Card.Text>
-                <Button variant="primary">Save</Button>
+                <SimpleModal restaurant={value}/>
               </Card.Body>
             </Card>
           ))}
