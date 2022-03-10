@@ -6,8 +6,8 @@ import Input from "react-validation/build/input";
 import "react-datetime/css/react-datetime.css";
 import Datetime from 'react-datetime';
 import moment from 'moment';
-import SimpleModal from "./simple-modal.component";
 import FavouriteService from "../services/favourite.service";
+import SimpleModal from "./simple-modal.component";
 
 export default class Home extends Component {
   weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -42,6 +42,23 @@ export default class Home extends Component {
 
   componentDidMount() {
     this.getRestaurantData();
+  }
+
+  handleCallback = async (childData) => {
+    this.setState({
+      loading: true
+    });
+    try {
+      await FavouriteService.createFavourite(childData);
+    }
+    catch (error) {
+      console.log(error);
+    }
+    finally {
+      this.setState({
+        loading: false
+      });
+    }
   }
 
   getRestaurantData() {
@@ -142,7 +159,7 @@ export default class Home extends Component {
                   ))}
 
                 </Card.Text>
-                <SimpleModal restaurant={value} favourites={this.state.favourites} />
+                <SimpleModal restaurant={value} favourites={this.state.favourites} parentCallback={this.handleCallback} />
               </Card.Body>
             </Card>
           ))}
