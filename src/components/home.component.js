@@ -50,6 +50,7 @@ export default class Home extends Component {
     });
     try {
       await FavouriteService.createFavourite(childData);
+
     }
     catch (error) {
       console.log(error);
@@ -58,6 +59,7 @@ export default class Home extends Component {
       this.setState({
         loading: false
       });
+      this.getRestaurantData();
     }
   }
 

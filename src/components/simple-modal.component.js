@@ -43,6 +43,7 @@ export default function SimpleModal(props) {
     const handleCallback = (childData) => {
         childData.restaurant_id = props.restaurant.id;
         props.parentCallback(childData);
+        handleClose();
     }
 
     return (
