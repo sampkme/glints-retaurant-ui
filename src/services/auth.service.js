@@ -26,7 +26,11 @@ class AuthService {
         });
     }
     getCurrentUser() {
-        return JSON.parse(localStorage.getItem('user'));;
+        return JSON.parse(localStorage.getItem('user'));
+    }
+
+    isLoggedIn() {
+        return JSON.parse(localStorage.getItem('user'))?.id ? true : false;
     }
 }
 export default new AuthService();

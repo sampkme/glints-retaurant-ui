@@ -8,6 +8,7 @@ import Datetime from 'react-datetime';
 import moment from 'moment';
 import FavouriteService from "../services/favourite.service";
 import SimpleModal from "./simple-modal.component";
+import authService from "../services/auth.service";
 
 export default class Home extends Component {
   weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -22,6 +23,7 @@ export default class Home extends Component {
     this.onChangeDateTime = this.onChangeDateTime.bind(this);
     this.onChangeName = this.onChangeName.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
+    this.isLoggedIn = authService.isLoggedIn();
   }
 
   onChangeName(e) {
@@ -87,13 +89,15 @@ export default class Home extends Component {
           });
         }
       );
-      FavouriteService.getFavourites().then(
-        favouriteResponse => {
-          this.setState({
-            favourites: favouriteResponse.data
-          });
-        }
-      );
+      if (this.isLoggedIn) {
+        FavouriteService.getFavourites().then(
+          favouriteResponse => {
+            this.setState({
+              favourites: favouriteResponse.data
+            });
+          }
+        );
+      }
     }
     catch (error) {
       console.log(error);
@@ -161,7 +165,7 @@ export default class Home extends Component {
                   ))}
 
                 </Card.Text>
-                <SimpleModal restaurant={value} favourites={this.state.favourites} parentCallback={this.handleCallback} />
+                {this.isLoggedIn ? (<SimpleModal restaurant={value} favourites={this.state.favourites} parentCallback={this.handleCallback} />) : ''}
               </Card.Body>
             </Card>
           ))}
