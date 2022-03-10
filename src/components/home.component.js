@@ -7,6 +7,7 @@ import "react-datetime/css/react-datetime.css";
 import Datetime from 'react-datetime';
 import moment from 'moment';
 import SimpleModal from "./simple-modal.component";
+import FavouriteService from "../services/favourite.service";
 
 export default class Home extends Component {
   weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -14,6 +15,7 @@ export default class Home extends Component {
     super(props);
     this.state = {
       restaurants: [],
+      favourites: [],
       name: "",
       dateTime: ""
     };
@@ -63,6 +65,13 @@ export default class Home extends Component {
         response => {
           this.setState({
             restaurants: response.data
+          });
+        }
+      );
+      FavouriteService.getFavourites().then(
+        favouriteResponse => {
+          this.setState({
+            favourites: favouriteResponse.data
           });
         }
       );
@@ -133,7 +142,7 @@ export default class Home extends Component {
                   ))}
 
                 </Card.Text>
-                <SimpleModal restaurant={value}/>
+                <SimpleModal restaurant={value} favourites={this.state.favourites} />
               </Card.Body>
             </Card>
           ))}

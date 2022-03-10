@@ -1,6 +1,7 @@
 import { Button, Modal } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
+import FavouriteSelect from "./favourite-select.component";
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -51,7 +52,7 @@ export default function SimpleModal(props) {
             >
                 <div style={modalStyle} className={classes.paper}>
                     <h2 className="text-center">{props.restaurant.name}</h2>
-                    
+                    <FavouriteSelect favourites={props.favourites} restaurant={props.restaurant} />
                 </div>
             </Modal>
         </div>
